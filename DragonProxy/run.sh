@@ -15,5 +15,8 @@ elif [ ! -f $ROOT/DragonProxy/config.yml ]; then
 fi
 
 # Start!
-sed -i -e "s/^\(remote-address\):.*/\1: '$1'/" $ROOT/config.yml
+sed -i \
+    -e "s/^\(remote-address\):.*/\1: '$1'/" \
+    -e "s/^\(remote-auth\):.*/\1: offline/" \
+    $ROOT/DragonProxy/config.yml
 docker run -it -p 19132:19132/udp $DRAGON_DOCKER_ARGS
